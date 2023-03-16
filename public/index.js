@@ -1,6 +1,5 @@
-let check=document.getElementById("RegisterButton")
-console.log(check)
-check.addEventListener('click', async function()
+const register=document.getElementById("RegisterButton")
+register.addEventListener('click', async function()
 {
     axios.post("http://localhost:3000/signup",{
         
@@ -16,3 +15,24 @@ check.addEventListener('click', async function()
     })
         
 })
+
+//==================================================Login===============================
+
+const login=document.getElementById("LoginButton")
+login.addEventListener('click', async function()
+{
+    axios.post("http://localhost:3000/login",{
+        
+    email:document.getElementsByName("email")[0].value,
+    password:document.getElementsByName("password")[0].value,
+    
+        
+    })
+    .then(response=>{
+        console.log(response);
+        alert(`${response.data}.. Login Now?`)
+    })
+        
+})
+
+
