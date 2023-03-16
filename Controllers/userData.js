@@ -1,5 +1,8 @@
 const bcrypt= require("bcrypt")
 const User= require("../models/users")
+const jwt=require("jsonwebtoken")
+const dotenv= require("dotenv")
+dotenv.config();
 
 
 exports.RegisterUser=(async(req, res)=>{
@@ -30,4 +33,36 @@ exports.RegisterUser=(async(req, res)=>{
         console.log(err);
     }
     
+});
+
+exports.Login=(async (req, res)=>{
+
+    try
+       {
+           const emailCheck=await User.findOne({where:{email: req.body.email}})
+           if(!emailCheck)
+           {
+                res.status(404).send("User not found");
+           }
+            else if(!await bcrypt.compare(req.body.password, emailCheck.password))
+           {
+               res.status(401).send("User not authorized");
+           }
+           else
+           {
+               const token = jwt.sign(
+                   { user_id: emailCheck.id },
+                   process.env.JWT_SECRET,
+                   {
+                     expiresIn: "1h",
+                   }
+                 );
+                 res.cookie("jwtoken", token).send("Logged In");
+           }
+       }
+       catch (err)
+       {
+           console.log(err);
+       }
+      
 });
