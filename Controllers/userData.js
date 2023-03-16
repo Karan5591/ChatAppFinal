@@ -1,14 +1,16 @@
 const bcrypt= require("bcrypt")
+const User= require("../models/users")
 
 
 exports.RegisterUser=(async(req, res)=>{
     try
     {
-      console.log(req.body);
+      
         const name= req.body.name;
         const email= req.body.email;
         const mobile= req.body.mobile;
         const password= req.body.password;
+        
         const hashPassword=  await bcrypt.hash(password, 10)
         const emailCheck= await User.findOne({where:{ email: req.body.email}});
            
