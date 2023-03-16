@@ -57,7 +57,7 @@ exports.Login=(async (req, res)=>{
                      expiresIn: "1h",
                    }
                  );
-                 res.cookie("jwtoken", token).send("Logged In");
+                 res.cookie("jwtoken", token).send(emailCheck.name);
            }
        }
        catch (err)
