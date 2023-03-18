@@ -66,6 +66,7 @@ register.addEventListener('click', async function()
     .then(response=>{
         console.log(response);
         alert(`${response.data}.. Login Now?`)
+        location.replace("login.html");
     })
         
 })

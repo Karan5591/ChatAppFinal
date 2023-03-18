@@ -4,6 +4,26 @@ document.addEventListener("DOMContentLoaded", (event)=>
     
     event.preventDefault();
     const username= localStorage.getItem("name");
+    axios.get("http://localhost:3000/getAllMessage",{
+    })
+    .then(response=>{
+        console.log(response.data);
+        for(var i=0;i<response.data.length;i++)
+        {
+            let mainDiv= document.createElement('div')
+        let className='outgoing';
+         mainDiv.classList.add(className, 'message')
+    let markup= `
+        <h4>${response.data[i].user.name}</h4>
+        <p>${response.data[i].message}</p>
+        
+    `
+    mainDiv.innerHTML=markup
+    messageArea.appendChild(mainDiv)
+        }
+        
+
+    })
     addName(username);
 });
 function addName(message) 

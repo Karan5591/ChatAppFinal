@@ -16,4 +16,5 @@ router.get("/", (req, res)=>{
 router.post("/signup", userRegister.RegisterUser);
 router.post("/login", userRegister.Login);
 router.post("/message", auth, messageData.message);
+router.get("/getAllMessage", messageData.getAllMessage);
 module.exports=router;
