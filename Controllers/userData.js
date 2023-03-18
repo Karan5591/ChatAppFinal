@@ -1,7 +1,8 @@
 const bcrypt= require("bcrypt")
 const User= require("../models/users")
 const jwt=require("jsonwebtoken")
-const dotenv= require("dotenv")
+const dotenv= require("dotenv");
+const sequelize = require("../util/Database");
 dotenv.config();
 
 
@@ -66,3 +67,4 @@ exports.Login=(async (req, res)=>{
        }
       
 });
+

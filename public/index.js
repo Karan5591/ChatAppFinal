@@ -1,20 +1,79 @@
-const register=document.getElementById("RegisterButton")
-register.addEventListener('click', async function()
+const messageArea= document.querySelector(".message__area");
+document.addEventListener("DOMContentLoaded", (event)=>
 {
-    axios.post("http://localhost:3000/signup",{
-        
-    name:document.getElementsByName("name")[0].value,
-    email:document.getElementsByName("email")[0].value,
-    password:document.getElementsByName("password")[0].value,
-    mobile: document.getElementsByName("mobile")[0].value
-        
-    })
-    .then(response=>{
-        console.log(response);
-        alert(`${response.data}.. Login Now?`)
-    })
-        
+    
+    event.preventDefault();
+    const username= localStorage.getItem("name");
+    addName(username);
+});
+function addName(message) 
+{
+    
+    const label = document.createElement("Label");
+    label.innerHTML = message+" "+"Joined";
+   messageArea.appendChild(label);
+}
+
+let textarea= document.querySelector("#textarea")
+const sendBtn= document.querySelector("#SendMessage");
+
+//=============================Send Message================
+
+sendBtn.addEventListener('click', (e)=>{
+   let textmsg= document.getElementById("textarea").value;
+   document.getElementById("textarea").value='';
+    sendMessage(textmsg);
 })
+
+function sendMessage(message)
+{
+    let msg={
+        user: localStorage.getItem("name"),
+        message:message
+
+    }
+
+    //append
+    appendMesaage(msg, 'outgoing')
+
+}
+
+function appendMesaage(msg, type)
+{
+    let mainDiv= document.createElement('div')
+    let className=type
+    mainDiv.classList.add(className, 'message')
+    let markup= `
+        <h4>${msg.user}</h4>
+        <p>${msg.message}</p>
+    `
+    mainDiv.innerHTML=markup
+    messageArea.appendChild(mainDiv)
+
+    //==============Sending msg to DB===========
+    axios.post("http://localhost:3000/message",
+{
+   message: msg.message,
+   token: document.cookie,
+}).then(response=>{
+    console.log(response);
+})
+}
+
+
+
+
+
+
+//========================Send message=============
+const message=document.getElementById("send-message");
+message.addEventListener('click', (event)=>
+{
+    
+   
+})
+
+
 
 
 
