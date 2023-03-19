@@ -4,7 +4,31 @@ document.addEventListener("DOMContentLoaded", (event)=>
     
     event.preventDefault();
     const username= localStorage.getItem("name");
+    let checkid=0;
+    if(localStorage.getItem("chat"))
+    {
+        const checkdata= JSON.parse(localStorage.getItem("chat"));
+        const len1=checkdata.length;
+         checkid=checkdata[len1-1].id;
+         
+
+         for(var i=0;i<len1;i++)
+        {
+            let mainDiv= document.createElement('div')
+        let className='outgoing';
+         mainDiv.classList.add(className, 'message')
+    let markup= `
+        <h4>${checkdata[i].name}</h4>
+        <p>${checkdata[i].text}</p>
+        
+    `
+    mainDiv.innerHTML=markup
+    messageArea.appendChild(mainDiv)
+        }
+    }
+    
     axios.get("http://localhost:3000/getAllMessage",{
+        params:{ids: checkid},
     })
     .then(response=>{
         console.log(response.data);
@@ -50,12 +74,9 @@ function sendMessage(message)
     let msg={
         user: localStorage.getItem("name"),
         message:message
-
     }
-
     //append
     appendMesaage(msg, 'outgoing')
-
 }
 
 function appendMesaage(msg, type)
@@ -76,22 +97,42 @@ function appendMesaage(msg, type)
    message: msg.message,
    token: document.cookie,
 }).then(response=>{
-    console.log(response);
+    const lar=response.data[0];
+    const larger=lar["MAX(`id`)"];
+
+    //===========Adding message to localstorage==========
+
+    if(!localStorage.getItem("chat")){
+        localStorage.setItem("chat", JSON.stringify([]));
+        }
+        var chatHistory = JSON.parse(localStorage.getItem("chat"));
+        var send = document.getElementById('sendMessage');
+
+        var message={
+            
+            id : larger,
+            name: localStorage.getItem("name"),
+            text : msg.message,
+            
+        };
+        localData = localStorage.getItem("chat");
+        localData = JSON.parse(localData);
+        if(localData.length>10)
+        {
+           chatHistory.shift();
+           chatHistory.push(message);
+        document.getElementById('textarea').value = "";
+        localStorage.setItem("chat", JSON.stringify(chatHistory));
+       }
+       else
+       {
+           chatHistory.push(message);
+        document.getElementById('textarea').value = "";
+        localStorage.setItem("chat", JSON.stringify(chatHistory));
+       }
+
 })
 }
-
-
-
-
-
-
-//========================Send message=============
-const message=document.getElementById("send-message");
-message.addEventListener('click', (event)=>
-{
-    
-   
-})
 
 
 
