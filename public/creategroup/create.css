@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+.createForm{
+    width: 40%;
+    margin: auto;
+    margin-top: 8rem;
+}
+.form-control:focus{
+    outline: none;
+}
+#back{
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+}

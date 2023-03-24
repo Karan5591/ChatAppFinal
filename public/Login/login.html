@@ -22,11 +22,11 @@
               <h5 class="card-title text-center mb-5 fw-light fs-5">Login</h5>
               <form  >
                 <div class="form-floating mb-3">
-                  <input type="email" class="form-control" name="email">
+                  <input type="email" class="form-control" id="email">
                   <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" name="password" >
+                  <input type="password" class="form-control"  id="password" >
                   <label for="floatingPassword">Password</label>
                 </div>
                 
@@ -48,35 +48,8 @@
     
   </body>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
-  <script >
-    let login=document.getElementById("LoginButton")
-console.log(login);
-login.addEventListener('click', async function()
-{
-    axios.post("http://localhost:3000/login",{
-        
-    email:document.getElementsByName("email")[0].value,
-    password:document.getElementsByName("password")[0].value,
-    
-        
-    })
-    .then(response=>{
-        console.log(response);
-        alert("Logged in Successfully")
-      localStorage.setItem("name",response.data)
-        location.replace("mainPage.html");
-    })
-    .catch(err=>{
-      alert(`${err.response.data}..`)
-    })
-        
-})
-    
-const newUser=document.getElementById("NewUser")
-newUser.addEventListener('click', (e)=>{
-  location.replace("SignUp.html");
-})
-  </script>
-  
-  
+        <script src="script.js"></script>
+
+</body>
+
 </html>

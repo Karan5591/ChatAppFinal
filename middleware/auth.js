@@ -1,29 +1,20 @@
-const express= require('express')
-const jwt= require("jsonwebtoken")
-const dotenv= require("dotenv")
-dotenv.config();
+const jwt=require('jsonwebtoken');
+const User=require('../model/user');
+require('dotenv').config();
 
-const TokenCheck= ((req, res, next)=>{
-        const token= req.cookies.jwtoken;
-        if(!token)
-        {
-            return res.status(403).send("Token required for verification")
-        }
-        try
-        {
-            if (token.startsWith('Bearer ')) {
-                
-                token = token.slice(7, token.length);
-              }
-             
-            const decoded= jwt.verify(token, process.env.JWT_SECRET)
-            req.id= decoded.user_id;
-        }
-        catch(err)
-        {
-            console.log(err)
-        }
-        return next();
-
-});
-module.exports = TokenCheck;
+exports.authenticate=(req,res,next)=>{
+    try {
+        const tocken=req.header('Authorization')
+        console.log(tocken);
+        const user=jwt.verify(tocken,process.env.GENERATE_ACCESS_TOKEN)
+        console.log(user);
+        User.findByPk(user.id).then((user) => {
+            console.log(JSON.stringify(user));
+            req.user=user
+            next();
+            
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}

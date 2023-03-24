@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="leftside">
+           
+    <div class="side-header">
+    <h1 class="title text-center text-white">Chat App</h1>
+    </div>
+    <div>
+    <button class="open-button" onclick="openForm()">
+        <img src="../images/dots.png" alt=""></button>
+           <div class="form">
+              
+                <button id="newgroup">New group</button>
+                <button>Details</button>
+                <button id="signout">Sign out</button>
+            </div>
+            <div class="groups">
+                <h2 style="color: white;">Groups</h2>
+                <!-- <button class="grp1">sainadh</button> -->
+            </div>
+        </div>
+            
+        </div>
+        <div class="rightside">
+            <nav id="navigation">
+                <h5 id="name"></h5>
+                <button id="participants">Participants</button>
+            </nav>
+            <div id="message-container"></div>
+            
+            <form id="send-container">
+                <i class="fa-solid fa-message fa-lg"></i>
+                <input type="text" id="message_input" placeholder="Type a message">
+                <button type="submit" id="send_button">Send</button>
+            </form>
+        </div>
+    </div>
+   
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+        integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="chat.js"></script>
+
+</body>
+
+</html>

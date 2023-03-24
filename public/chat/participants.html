@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participants</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="./participants.css">
+</head>
+<body>
+    <button id="back">X</button>
+    <div class="wrapper">
+        <!-- <header>Header</header> -->
+        <aside>
+            <h1>Group members</h1>
+            <div class="participants"></div>
+        </aside>
+        <article>
+            <form id="addmember">
+                <div class="form-control">
+                <label for="name">Email:</label>
+                <input type="text" name="email" id="email">
+                </div>
+                
+                <button id="button">Add to group</button>
+
+            </form>
+        </article>
+       
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+        integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./participants.js"></script>
+</body>
+</html>
