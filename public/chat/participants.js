@@ -7,13 +7,16 @@ document.getElementById('back').addEventListener('click',event=>{
     event.preventDefault();
     location.replace('./chat.html')
 })
-function showPaticipants(participant){
-    
-    participants.innerHTML+=`<hr><div id="row"><h2 style="color:white;font-size:large;margin:15px;">${participant.name}</h2>`
+function showPaticipans(participant){
+    console.log(participant.isAdmin);
+    if(participant.isAdmin==true || participant.isAdmin=='true'){
+    participants.innerHTML+=`<hr><h2 style="color:white;font-size:large;margin:15px;">${participant.name}-- admin</h2>`
+    }else{
+    participants.innerHTML+=`<hr><div id="row"><h2 style="color:white;font-size:large;margin:15px;">${participant.name}</h2><button id='admin' class=${participant.userId}>admin</button> <button id='remove' class=${participant.userId}>remove</button></div>`
 
     }
 
-
+}
 
 function members(){
     const id=localStorage.getItem('groupId');
@@ -22,7 +25,7 @@ axios.get(`http://localhost:4000/getmembers/${id}`,{headers:{'Authorization':tok
 .then((result) => {
     console.log(result);
     result.data.result.forEach(element => {
-        showPaticipants(element)
+        showPaticipans(element)
     });
 }).catch((err) => {
     console.log(err);
@@ -50,3 +53,33 @@ button.addEventListener('click',event=>{
 })
 
 
+participants.addEventListener('click',event=>{
+    const id=localStorage.getItem('groupId');
+    const token=localStorage.getItem('token');
+    event.preventDefault();
+    console.log(event.target.innerHTML);
+    if(event.target.id='admin'){
+        console.log(event.target.classList.value)
+        const userId=event.target.classList.value
+        axios.post(`http://localhost:4000/admin/${id}`,{userId:userId},{headers:{'Authorization':token}})
+        .then(result=>{
+            console.log(result);
+            location.reload();
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+    if(event.target.id='remove'){
+        console.log(event.target.classList.value)
+        const userId=event.target.classList.value
+        axios.post(`http://localhost:4000/remove/${id}`,{userId:userId},{headers:{'Authorization':token}})
+        .then(result=>{
+            console.log(result);
+            location.reload();
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+})
