@@ -19,9 +19,6 @@ const path=require("path")
 const app=express()
 
 app.use(express.static("Views"));
-
-
-
 app.use(cors())
 app.use(bodyParser.json())
 app.use(userRoutes)
