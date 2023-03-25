@@ -1,7 +1,5 @@
 const Sequelize=require('sequelize')
-const dotenv=require('dotenv')
-dotenv.config();
-const sequelize=new Sequelize(process.env.DATABASE,process.env.USER,process.env.PASSWORD,{
+const sequelize=new Sequelize('group_chat_app','root','Password@4321',{
     dialect:'mysql',
     host:'localhost'
 })

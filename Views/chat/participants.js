@@ -23,7 +23,8 @@ function members(){
     const token=localStorage.getItem('token');
 axios.get(`http://localhost:4000/getmembers/${id}`,{headers:{'Authorization':token}})
 .then((result) => {
-    console.log(result);
+    console.log(result.data);
+    
     result.data.result.forEach(element => {
         showPaticipans(element)
     });
@@ -45,7 +46,9 @@ button.addEventListener('click',event=>{
         option:option
     },{headers:{'Authorization':token}})
     .then(result=>{
-        console.log(result);
+        console.log(result.data);
+        alert(result.data);
+        window.location.href='./chat.html';
     })
     .catch(err=>{
         console.log(err);

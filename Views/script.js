@@ -2,7 +2,7 @@ const cbutton=document.querySelector('#LoginButton');
 const newUser=document.querySelector('#NewUser')
 
 newUser.addEventListener('click', ()=>{
-    window.location.href='../SignUp/signup.html';
+    window.location.href='/SignUp/signup.html';
 })
 
 cbutton.addEventListener('click',event=>{

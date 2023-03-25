@@ -37,8 +37,7 @@ send_button.addEventListener('click',event=>{
 
 window.addEventListener('DOMContentLoaded',event=>{
 
-    // setInterval(messages,1000);
-    // document.getElementById('name').innerHTML=localStorage.getItem('groupname')
+    
     const token=localStorage.getItem('token');
     axios.get('http://localhost:4000/getgroups',{headers:{'Authorization':token}})
     .then(results=>{
@@ -57,43 +56,6 @@ window.addEventListener('DOMContentLoaded',event=>{
     })
 })
 
-// window.addEventListener('DOMContentLoaded',(event)=>{
-//     document.querySelector('.grp1').addEventListener('click',event=>{
-//         event.preventDefault();
-    
-//     setInterval(()=>{
-//     const token=localStorage.getItem('token')
-//     axios.get('http://localhost:4000/getmessages',{headers:{'Authorization':token}})
-//     .then(result=>{
-//         console.log(result);
-//         message_container.innerHTML='';
-//         result.data.messages.forEach(message => {
-//             if(result.data.uid==message.userId){
-//                 const div=document.createElement('div')
-//                 div.appendChild(document.createTextNode(`You:${message.message}`))
-//                 div.style.marginLeft='75%'
-//                  div.style.backgroundColor='green'
-//                 div.style.color='white'
-//                 message_container.appendChild(div)
-//                 // message_container.innerHtml+=`<div>You:${message.message}</div>`
-//             }else{
-//                 const div=document.createElement('div')
-//                 div.appendChild(document.createTextNode(`${message.name}:${message.message}`))
-//                 message_container.appendChild(div)
-//                 // message_container.innerHtml+=`<div>${message.name}:${message.message}`
-//             }
-            
-//         });
-        
-//     })
-//     .catch(err=>{
-//         console.log(err);
-//     })
-// },1000)
-
-// })
-
-
 newgroup.addEventListener('click',event=>{
     event.preventDefault();
     location.replace('../creategroup/create.html');
@@ -106,7 +68,7 @@ groups.addEventListener('click',event=>{
     document.getElementById('name').innerHTML=event.target.innerHTML;
     const id=event.target.id;
     localStorage.setItem('groupId',id);
-    setInterval(messages,1000);
+    setInterval(messages,10000);
 })
 
 if(localStorage.getItem('groupId')){

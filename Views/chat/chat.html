@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+    
+
+    <div class="wrapper">
+        <div class="leftside">
+           
+    <div class="side-header">
+    <h1 class="title text-center text-white">Chat App</h1>
+ </div>
+   
+            <div class="groups">
+                <div class="btn-group" style="align-self: center;">
+                    <button type="button" class="btn btn-secondary">Action</button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                      <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" style="text-align: center;">
+                      <li><a id="newgroup" onmouseover="" style="cursor: pointer;">New group</a></li><br>
+                      <li><a id="signout" onmouseover="" style="cursor: pointer;">Sign out</a></li>
+                      
+                    </ul>
+                  </div>
+                  <br><br>
+                <h2 style="color: white;">Groups</h2>
+                <!-- <button class="grp1">sainadh</button> -->
+            </div>
+        
+            
+        </div>
+        <div class="rightside">
+            <nav id="navigation">
+                <h5 id="name"></h5>
+                <button id="participants">Participants</button>
+            </nav>
+            <div id="message-container"></div>
+            
+            <form id="send-container">
+                <i class="fa-solid fa-message fa-lg"></i>
+                <input type="text" id="message_input" placeholder="Type a message">
+               
+                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" id='send_button'>Send</button>
+            </form>
+        </div>
+    </div>
+   
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+        integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="chat.js"></script>
+
+</body>
+
+</html>

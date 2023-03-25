@@ -12,10 +12,15 @@ const Usergroup=require('./model/usergroups')
 const Groupmessages=require('./model/groupmessage')
 const groupmessageRoutes=require('./routes/groupmessage');
 const router = require('./routes/allRoutes');
+const path=require("path")
 
 
 
 const app=express()
+
+app.use(express.static("Views"));
+
+
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -32,9 +37,12 @@ Group.belongsToMany(User,{through:Usergroup});
 
 User.hasMany(Groupmessages);
 Groupmessages.belongsTo(User)
+const PORT=process.env.PORT || 4000;
 
-//app.use("/", router)
-app.listen(4000, (req, res)=>{
+
+
+
+app.listen(PORT, (req, res)=>{
     console.log("server started");
 });
 

@@ -29,22 +29,20 @@
 
         }
 
-        /* #message-container div:nth-child(2n) {
-            background-color: #FFF;
-        } */
+       
 
         #send-container {
              position: fixed;
             bottom: 0;
              padding: 10px; 
-            max-width: 1200px;
-             padding-bottom: 20px; 
+             max-width: 1200px;
+             padding-bottom: 20px;
             padding: 5px;
              background-color: orange; 
             background-color: white;
             width: 100%;
-            margin: auto; 
-        display: flex;
+             margin: auto; 
+            display: flex;
             margin-top: 30px; 
         }
  #send-container input{
@@ -61,13 +59,12 @@
  }
      
 .side-header{
-    width: 10%;
-    height: 3rem;
-    position:fixed;
-    
+    width: 15%;
+    height: 6rem;
+    position: fixed;
     top: 0;
     left: 0;
-    display: block;
+    display: flex;
     flex-direction: column;
     background-color: rgb(147, 181, 233);;
     border-right: 0.2px solid black;
@@ -81,12 +78,10 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 25%;
+    width: 15%;
     height: 100%;
     background-color:rgb(147, 181, 233); ;
     overflow: hidden;
-    /* white-space: nowrap; */
-    /* transition: .3s ease; */
     padding: 10px;
 }
 .leftside:hover{
@@ -125,10 +120,10 @@ img{
 .open-button {
 
     position: fixed;
-    border:solid;
     left: 20%;
     top: 3rem;
     cursor: pointer;
+    border: none;
     background-color:rgb(147, 181, 233);
    
 }
