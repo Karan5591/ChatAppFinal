@@ -1,193 +1,111 @@
-@import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-    
-        }
-    
-        body {
-            background-color: #f3f5f9;
-        }
-
- #message-container{
-    margin-bottom: 50px;
- }
-        #message-container div {
-            background-color: white;
-            color:black;
-            padding: 5px;
-            margin-top: 10px;
-            /* width: 25%; */
-            width: fit-content;
-            block-size: fit-content;
-            border-radius: 5px;
-            margin-left: 50px;
-
-        }
-
-       
-
-        #send-container {
-             position: fixed;
-            bottom: 0;
-             padding: 10px; 
-             max-width: 1200px;
-             padding-bottom: 20px;
-            padding: 5px;
-             background-color: orange; 
-            background-color: white;
-            width: 100%;
-             margin: auto; 
-            display: flex;
-            margin-top: 30px; 
-        }
- #send-container input{
-    width: 40%;
-    height: 40px;
-    border-radius: 5px;
-    font-size: medium;
-    padding: 10px;
- }
- #send_button{
-    width: 60px;
-    border-radius: 5px;
-    margin-left: 5px;
- }
-     
-.side-header{
-    width: 15%;
-    height: 6rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(147, 181, 233);;
-    border-right: 0.2px solid black;
-    
-}
-.wrapper{
-    display: flex;
-    position: relative;
-}
-.leftside{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 15%;
-    height: 100%;
-    background-color:rgb(147, 181, 233); ;
-    overflow: hidden;
-    padding: 10px;
-}
-.leftside:hover{
-    overflow-y: scroll;
-}
-.rightside{
-    display: none;
-    width: 100%;
-    margin-left: 25%;
+*{
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    
-}
-#participants{
-    border-radius: 5px;
-    padding: 5px;
-    border: none;
-    background-color:rgb(147, 181, 233); 
-    color: white;
-    cursor: pointer;
-    
-}
-#navigation{
-    width: 100%;
-    height: 4rem;
-    background-color: rgb(147, 181, 233)    ;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-}
-img{
-    height: 2rem;
 }
 
-.open-button {
-
-    position: fixed;
-    left: 20%;
-    top: 3rem;
-    cursor: pointer;
-    border: none;
-    background-color:rgb(147, 181, 233);
-   
-}
-.open-button:focus{
-    border: none;
-    outline: none;
-}
-.groups{
-    width: 100%;
-    margin-top: 7rem;
-}
-.grp1{
-    width: 100%;
-    border: none;
-    height: 2rem;
-    background-color: none;
-    cursor: pointer;
-    margin-top: 10px;
-}
-.grp1:focus{
-    outline: none;
-}
-
-.list{
-    margin-top: 200px;
-}
-.form{
-    display: none;
-
-    width: 15%;
-    background-color: red;
-    text-align: center;
-    position: fixed;
-   left: 22%;
-   top: 17%;
-    z-index: 9;
+body {
+    margin: 2%;
+    justify-content: center;
     overflow: hidden;
 }
-.form button{
-    width: 100%;
-    display: block;
-    /* padding-left: 50px; */
-    padding-bottom: 10px;
-    border: none;
-    background-color:white;
-    cursor: pointer;
-}
-.form button:hover{
-    background-color: #f3f5f9;
-}
-.form button:focus{
-    outline: none;
+
+.container {
+    height: 91vh;
+    width: 80%;
+    
 }
 
-@media (max-width: 500px) {
-    .title{
-        font-size: medium;
-    }
-    .groups h2{
-        font-size: medium;
-    }
+.LeftSide
+{
+    width: 30%;
+    float:left;
+    border: groove;
+    height: 90vh;
+    background-color: rgb(147, 181, 233);
+    color:white;
 }
-@media (max-width: 650px) {
-    .title {
-            font-size: large;
-        }
+
+.L-header
+{
+    text-align: center;
+    margin-bottom: 30px;
 }
+.groups
+{
+    margin-top: 30px;
+    text-align: center;
+}
+
+
+.RightSide
+{
+    width: 60%;
+    float:left;
+    border: groove;
+    
+    
+    height: 90vh;
+}
+#grp-header
+{
+    margin-top: 0px;
+    background-color: rgb(147, 181, 233);
+    height: 40px;
+    margin-bottom: 50px;
+    color: white;
+    
+}
+#participants
+{
+    float: right;
+    background-color: rgb(147, 181, 233);
+    height: 40px;
+    margin-right: 5px;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 10px;    
+
+    
+}
+#name
+{
+    text-transform: uppercase;
+   text-align: center;
+}
+#message_container
+{
+    height: 77vh;
+    overflow: auto;
+    
+}
+
+#message_input
+{
+    width:60%;
+    height: 40px;
+    margin-left: 10px;
+    padding: 5px;
+    font-weight: bold;
+}
+.message
+{
+    border-radius: 10px;
+  background: rgb(147, 181, 233);
+  padding: 20px;
+  width: 40%;
+  height: 90px;
+  margin-left: 5px;
+  margin-bottom: 20px;
+}
+.grp1
+{
+    width:90%;
+    margin-top: 5px;
+    border: none;
+
+}
+

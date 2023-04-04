@@ -18,7 +18,7 @@ article {
 
 aside {
     grid-area: sidebar;
-    background-color:#25D366;
+    background-color:rgb(147, 181, 233);
     border-right: 1 px solid black;
 }
 aside h1{
@@ -74,16 +74,13 @@ footer {
     border-radius: 5px;
     font-size: large;
 }
+#options
+{
+    height: 50%;
+}
 #button{
-    width: auto;
-    height: 2rem;
-    background-color: rgb(147, 181, 233);
-    color: white;
-    border-radius: 5px;
-    margin: 5px;
-    font-size: large;
-    cursor: pointer;
-    margin-left: 20px;
+    
+    margin-top: 20px;
 
 }
 #back{

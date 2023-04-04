@@ -42,15 +42,17 @@ const {email,password}=req.body;
     else{
         User.findAll({where:{email:email}})
         .then(result=>{
-            console.log(result==0)
-            if(result==0){
+             if(result==0){
                 return res.status(404).json({msg:'User not found'})
             }
             if(result[0].email==email){
-            console.log(result[0].password);
             bcrypt.compare(password,result[0].password,(err,results)=>{
                  if(results==true){
-                res.status(200).json({msg:'User login sucessfully',token:jwt.sign({id:result[0].id},'f335e76783e2c156cfccbc5179ab50ad2ec6d96e')})
+                res.status(200).json({
+                    msg:'User login sucessfully',
+                    token:jwt.sign({
+                        id:result[0].id},
+                    'f335e76783e2c156cfccbc5179ab50ad2ec6d96e')})
             }
             else{
                 res.status(401).json({msg:'User not authorized'})

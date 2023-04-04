@@ -10,7 +10,7 @@ create.addEventListener('click',event=>{
     const token=localStorage.getItem('token');
     event.preventDefault();
     const groupname=document.getElementById('groupname').value;
-    console.log(groupname);
+    
     document.getElementById('groupname').value='';
 
     axios.post('http://localhost:4000/creategroup',
@@ -18,7 +18,7 @@ create.addEventListener('click',event=>{
     {headers:{'Authorization':token}})
     .then((response) => {
         console.log(response);
-        alert('group created successful');
+        alert('Group created successfully..');
         location.replace('../chat/chat.html')
     }).catch((err) => {
         console.log(err);

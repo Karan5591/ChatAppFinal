@@ -12,7 +12,7 @@ function showPaticipans(participant){
     if(participant.isAdmin==true || participant.isAdmin=='true'){
     participants.innerHTML+=`<hr><h2 style="color:white;font-size:large;margin:15px;">${participant.name}-- admin</h2>`
     }else{
-    participants.innerHTML+=`<hr><div id="row"><h2 style="color:white;font-size:large;margin:15px;">${participant.name}</h2><button id='admin' class=${participant.userId}>admin</button> <button id='remove' class=${participant.userId}>remove</button></div>`
+    participants.innerHTML+=`<hr><div id="row"><h2 style="color:white;font-size:large;margin:15px;">${participant.name}</h2><button id='admin' class=${participant.userId}>admin</button> <button  id='remove' class=${participant.userId}>remove</button></div>`
 
     }
 

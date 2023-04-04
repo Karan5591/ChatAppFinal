@@ -1,20 +1,12 @@
 const send_button=document.getElementById('send_button');
-const message_container=document.getElementById('message-container');
+const message_container=document.getElementById('message_container');
 const newgroup=document.getElementById('newgroup');
 const groups=document.querySelector('.groups');
 const msg=[]
 let open=false;
-function openForm() {
-    if(open){
-    document.querySelector('.form').style.display = "none"
-    open=false
-    } else{  
-    open=true;
+const socket=io();
 
-    document.querySelector('.form').style.display = "block"
-    }
- }
-
+//===========================Send Message====================
 
 send_button.addEventListener('click',event=>{
     event.preventDefault();
@@ -26,6 +18,58 @@ send_button.addEventListener('click',event=>{
     document.getElementById('message_input').value=''
     console.log(message_input);
     console.log(token);
+    const uNmae=localStorage.getItem("name");
+    sendMessage(message_input)
+    
+    //Send msg to server
+
+    function sendMessage(msg){
+        let msg1={
+            user:  uNmae,
+            message:msg
+        }
+        console.log(msg1);
+
+        //append message
+
+        appendMessage(msg1)
+        stayBottom();
+
+        //Send to server using socket
+
+        socket.emit("message",msg1);
+
+    }
+
+    function appendMessage(msgs)
+    {
+        let mainDiv= document.createElement('div')
+        
+    mainDiv.classList.add('message')
+let markup= `
+   <h5>${msgs.user}</h5>
+   <p>${msgs.message}</p>
+   
+`
+mainDiv.innerHTML=markup
+message_container.appendChild(mainDiv)
+    }
+    
+    //Recieve messages
+
+    socket.on('message', (msg)=>{
+        appendMessage(msg);
+    })
+    stayBottom();
+
+    //Stay on bottom for new msg
+
+    function stayBottom()
+    {
+        message_container.scrollTop=message_container.scrollHeight;
+    }
+
+
     axios.post(`http://localhost:4000/groupmessage/${id}`,{
         message:message_input
     },{headers:{'Authorization':token}}).then((response) => {
@@ -35,13 +79,17 @@ send_button.addEventListener('click',event=>{
     });
 })
 
-window.addEventListener('DOMContentLoaded',event=>{
+//================================On page load=============================
 
-    
-    const token=localStorage.getItem('token');
-    axios.get('http://localhost:4000/getgroups',{headers:{'Authorization':token}})
+window.addEventListener('DOMContentLoaded',event=>
+{
+  const token=localStorage.getItem('token');
+    axios.get('http://localhost:4000/getgroups',{
+        headers:{
+            'Authorization':token
+        }})
     .then(results=>{
-        console.log(results);
+        localStorage.setItem("name",results.data[0].name);
         results.data.forEach(result=>{
         const button=document.createElement('button');
         button.setAttribute('class','grp1');
@@ -56,10 +104,15 @@ window.addEventListener('DOMContentLoaded',event=>{
     })
 })
 
+
+//===================================Create Groups===============
+
 newgroup.addEventListener('click',event=>{
     event.preventDefault();
     location.replace('../creategroup/create.html');
 })
+
+//================================ Check group details==========================
 
 groups.addEventListener('click',event=>{
     event.preventDefault();
@@ -68,34 +121,34 @@ groups.addEventListener('click',event=>{
     document.getElementById('name').innerHTML=event.target.innerHTML;
     const id=event.target.id;
     localStorage.setItem('groupId',id);
-    setInterval(messages,10000);
+    //setInterval(messages,10000);
+    messages();
 })
 
-if(localStorage.getItem('groupId')){
+if(localStorage.getItem('groupId'))
+{
 function messages(){
-    document.querySelector('.rightside').style.display='block';
     const id=localStorage.getItem('groupId')
+
     const token=localStorage.getItem('token');
     axios.get(`http://localhost:4000/gropumessages/${id}`,{headers:{'Authorization':token}})
     .then(result=>{
         console.log(result);
         message_container.innerHTML='';
-        result.data.messages.forEach(message => {
-            if(result.data.uid==message.userId){
-                const div=document.createElement('div')
-                div.appendChild(document.createTextNode(`You:${message.message}`))
-                div.style.marginLeft='75%'
-                 div.style.backgroundColor='green'
-                div.style.color='white'
-                message_container.appendChild(div)
-                // message_container.innerHtml+=`<div>You:${message.message}</div>`
-            }else{
-                const div=document.createElement('div')
-                div.appendChild(document.createTextNode(`${message.name}:${message.message}`))
-                message_container.appendChild(div)
-                // message_container.innerHtml+=`<div>${message.name}:${message.message}`
-            }
-        });
+        result.data.messages.forEach(message => 
+        {            
+    let mainDiv= document.createElement('div')
+        
+    mainDiv.classList.add('message')
+let markup= `
+   <h5>${message.name}</h5>
+   <p>${message.message}</p>
+   
+`
+mainDiv.innerHTML=markup
+message_container.appendChild(mainDiv)
+
+    });
     })
     .catch(err=>{
         console.log(err);
@@ -104,12 +157,18 @@ function messages(){
 }
 }
 
-document.getElementById('participants').addEventListener('click',event=>{
+//=========================Check Participants====================
+
+document.getElementById('participants').addEventListener('click',event=>
+{
     event.preventDefault();
     location.replace('./participants.html');
 })
 
-document.getElementById('signout').addEventListener("click", () => {
+//=============================Sign Out===================================
+
+document.getElementById('signout').addEventListener("click", () => 
+{
   localStorage.clear();
-  location.replace("../Login/login.html");
+  location.replace("/index.html");
 });

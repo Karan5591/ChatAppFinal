@@ -17,8 +17,6 @@ catch(err){
     res.status(500).json({sucess:false});
 }
     
-
-
 }
 
 exports.getmessages=(req,res)=>{
@@ -33,4 +31,17 @@ catch(err){
     res.status(500).json({sucess:false,err})
 }
     
+}
+
+exports.getAllmessages=(req,res)=>{
+    try{
+    Message.findAll().then((result) => {
+        res.status(200).json({sucess:true,messages:result,uid:req.user.id})
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+catch(err){
+    res.status(500).json({sucess:false,err})
+}
 }

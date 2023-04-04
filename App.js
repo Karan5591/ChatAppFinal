@@ -1,4 +1,5 @@
 const express=require('express');
+const app=express()
 const userRoutes=require('./routes/user')
 const bodyParser=require('body-parser')
 const cors=require('cors')
@@ -16,7 +17,7 @@ const path=require("path")
 
 
 
-const app=express()
+
 
 app.use(express.static("Views"));
 app.use(cors())
@@ -34,18 +35,20 @@ Group.belongsToMany(User,{through:Usergroup});
 
 User.hasMany(Groupmessages);
 Groupmessages.belongsTo(User)
+
 const PORT=process.env.PORT || 4000;
-
-
-
-
-app.listen(PORT, (req, res)=>{
+const http=require('http').createServer(app)
+http.listen(PORT, (req, res)=>{
     console.log("server started");
 });
 
-// sequelize.sync()
-// .then((result) => {
-//     app.listen(4000)
-// }).catch((err) => {
-//     console.log(err);
-// });
+//Socket
+
+
+const io=require('socket.io')(http)
+io.on('connection', (socket)=>{
+    console.log("connected");
+    socket.on('message', (msg)=>{
+       socket.broadcast.emit('message', msg);
+    })
+})
