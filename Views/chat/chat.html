@@ -12,6 +12,7 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="chat.css">
     
+    
 </head>
 <body>
 <div class="container">
@@ -38,23 +39,34 @@
      
     </div>
     <div class="RightSide">
+        
         <div id="grp-header">
             <h3 id="name">All</h3>
+            
             <button id="participants">Participants</button>
         </div>
         <div id="message_container">
+            <img id="output" width="300" />	
             <!-- <div class="message">
                 
             </div> -->
             
         
         </div>
+        
         <div id="send-message">
-            <input type="text" id="message_input" placeholder="Type a message">
-                <button class="btn btn-primary btn-login text-uppercase fw-bold" id='send_button'>Send</button>
             
+            <input type="text" id="message_input" placeholder="Type a message">
+            <button class="btn btn-primary btn-login text-uppercase fw-bold" id='send_button'>Send</button>
+
+            
+            <label for="fileUpload"><img src="/Backend/Views/images/attachment.png" width="20" height="20" ></label>
+            <input type="file" id="fileUpload" name='fileData' onchange="uploadImage(event)" style="display: none;">
+                
+                
             
         </div>
+        
     </div>
 
 </div>

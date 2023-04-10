@@ -2,6 +2,16 @@ const Group=require('../model/group')
 const Groupmessage=require('../model/groupmessage')
 const Usergroup=require('../model/usergroups');
 const User=require('../model/user')
+const AWS= require('aws-sdk')
+const multer = require('multer')
+const multerS3 = require('multer-s3');
+
+
+const dotenv= require('dotenv')
+dotenv.config();
+
+
+
 exports.getmessages=async (req,res)=>{
     console.log(req.body);
     console.log(req.params.id);
@@ -149,4 +159,31 @@ exports.remove=async (req,res)=>{
   } else {
     res.json("you are not admin !ask admin to make you admin");
   }
+}
+
+
+//===============================Adding file to s3 bucket===============
+
+AWS.config.update({
+  accessKeyId: process.env.SECRET_ID,
+  secretAccessKey: process.env.SECRET_KEY,
+  region: "ap-south-1"
+})
+const BUCKET = process.env.BUCKET
+const s3 = new AWS.S3();
+
+exports.addFile= async(req, res)=>{
+  
+  res.send( req.file.originalname)
+
+}
+
+exports.downloadFile= async (req, res) => {
+  const filename = req.params.filename
+  let x = await s3.getObject(
+    { 
+      Bucket: BUCKET, 
+      Key: filename 
+    }).promise();
+  res.send(x.Body)
 }

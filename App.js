@@ -27,6 +27,7 @@ app.use(messageRoutes);
 app.use(createRoutes);
 app.use(groupmessageRoutes);
 
+
 User.hasMany(Message);
 Message.belongsTo(User);
 

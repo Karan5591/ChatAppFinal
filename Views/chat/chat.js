@@ -172,3 +172,55 @@ document.getElementById('signout').addEventListener("click", () =>
   localStorage.clear();
   location.replace("/index.html");
 });
+
+//============================Upload data button======================
+
+
+
+function uploadImage(event) {
+    const file = event.target.files[0];
+    
+    let reader= new FileReader();
+    reader.onload= function()
+    {
+       const base64=  reader.result; 
+        
+    }
+        
+        reader.readAsDataURL(file);
+    
+
+
+    const formData = new FormData();
+    formData.append('image', file);
+    
+    axios.post('http://localhost:4000/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(response => {
+        console.log(response.data);
+        let msgDiv= document.createElement('div')
+        
+        msgDiv.classList.add('message')
+    let markup1= `
+       <h5>${localStorage.getItem("name")}</h5>
+       <p>Shared a new File.<a href="http://localhost:4000/download/${response.data}">See Details</a></p>
+       
+    `
+    msgDiv.innerHTML=markup1
+    message_container.appendChild(msgDiv)
+    const Smsg= {
+        user: localStorage.getItem("name"),
+        message: `<p>Shared a new File.<a href="http://localhost:4000/download/${response.data}">See Details</a></p>`
+    }
+
+    socket.emit("message",Smsg);
+
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
