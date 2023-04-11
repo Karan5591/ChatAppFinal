@@ -12,10 +12,11 @@ const Group=require('./model/group')
 const Usergroup=require('./model/usergroups')
 const Groupmessages=require('./model/groupmessage')
 const groupmessageRoutes=require('./routes/groupmessage');
+const archivedMsg= require('./controller/ArchivedData')
 const router = require('./routes/allRoutes');
+
 const path=require("path")
-
-
+const cron= require("node-cron")
 
 
 
@@ -28,6 +29,13 @@ app.use(createRoutes);
 app.use(groupmessageRoutes);
 
 
+
+const cron1=cron.schedule("* * 23 * * *", function (){
+    console.log("Updating the Data");
+    const ArchivedData=archivedMsg.archiveddata;
+    ArchivedData();
+})
+cron1.start();
 User.hasMany(Message);
 Message.belongsTo(User);
 
